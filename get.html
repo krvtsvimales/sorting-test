@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorting Test</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html{
+		background-color: black;
+
+		/*Radial gradient background - css3 */
+		background-color: #deebdd;
+		background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);
+		text-align: center;
+	}
+
+	#idDiv{
+		margin-top: 50px;
+	}
+
+	.input{
+		font-size: 20px;
+		color: black;
+		font-weight: 700;
+		font-family: cursive;
+		margin: 20px;
+	}
+
+	#entry{
+		width: 150px;
+		height: 40px;
+		font-size: 23px;
+		font-family: "Arial", cursive, sans-serif;
+		background-color: #001a66;
+		color: whitesmoke;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+		margin-top: 10px;
+	}
+
+	table{
+		border-collapse: collapse;
+		width: 50%;
+		margin: 50px auto;
+		background-color: grey;
+	}
+
+	table, th, td{
+		border: 2px solid black;
+		padding: 5px;
+	}
+
+	th{
+		font-size: 30px;
+		font-weight: 700;
+		font-family: Arial;
+		color: #004d00;
+	}
+
+	td{
+		font-size: 25px;
+		color: crimson;
+		font-weight: 400;
+		font-family: Georgia;
+
+	}
+</style>
+<body onload="setUniqueIndex()">
+	<!-------Code to add multiple users and display them in a table------->
+
+	<div id= "container"
+		<div id="idDiv" class="input">ID: <input id="id" type="text" disabled/></div>
+
+		<div class="input">Name: <input id="name" type="text" placeholder="Vimz"/></div>
+
+		<div class="input">Occupation: <input id="occupation" type="text" placeholder="designer"/></div>
+
+		<p><button onclick="addRow()">Add</button></p>
+
+
+	</div>
+	<div>
+		<select id="ddlselect" onchange="sortTable();">
+			<option>-- Sort By:--</option>
+			<option value="id">UserID</option>
+			<option value="name">UserName</option>
+			<option value="occupation">UserOccupation</option>
+		</select>
+	</div>
+	<table id="display">
+		<tr>
+			
+		</tr>
+	</table>
+
+	<script>
+
+	
+
+	
+	function sortTable() {
+ 
+ var value = document.getElementById("ddlselect").value;
+
+if (value == "id") {
+  var table, rows, switching, i, x, y,g, shouldSwitch;
+  table = document.getElementById("display");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 0; i < rows.length; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[0];
+      y = rows[i + 1].getElementsByTagName("td")[0];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+else if (value == "name") {
+  var table, rows, switching, i, x, y,g, shouldSwitch;
+  table = document.getElementById("display");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 0; i < rows.length; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[1];
+      y = rows[i + 1].getElementsByTagName("td")[1];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+else if (value == "occupation") {
+  var table, rows, switching, i, x, y,g, shouldSwitch;
+  table = document.getElementById("display");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 0; i < rows.length; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[2];
+      y = rows[i + 1].getElementsByTagName("td")[2];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+	}
+
+
+
+    function setUniqueIndex() {
+        var x = document.getElementById('display').rows.length;
+        document.getElementById('id').value = x;
+      }
+
+
+			function addRow() {
+        'use strict';
+
+        var table = document.getElementById('display');
+
+        var row = document.createElement('tr');
+        console.log(row);
+        var td1 = document.createElement('td');
+        var td2 = document.createElement('td');
+        var td3 = document.createElement('td');
+
+        td1.innerHTML = document.getElementById('id').value;
+        td2.innerHTML = document.getElementById('name').value;
+        td3.innerHTML = document.getElementById('occupation').value;
+
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+
+        table.children[0].appendChild(row);
+				var x = document.getElementById('display').rows.length;
+        document.getElementById('id').value = x;
+      }
+
+		
+	</script>
+
+</body>
+</html>
+
